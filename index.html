@@ -6,221 +6,143 @@
   <title>A Fórmula da Criação</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
   <style>
-    /* Reset básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #f0f4ff, #ffffff);
-      color: #2c2c2c;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      background: linear-gradient(to right, #1e1e2f, #232347);
+      color: #ffffff;
+      font-family: 'Roboto Mono', monospace;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 900px;
+    .glitch {
+      position: relative;
+      color: #6bffcc;
+      animation: glitch-skew 1s infinite linear alternate-reverse;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      background-color: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1s ease-out;
+      height: 100%;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 40px;
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
     }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #3a2e7b;
-      animation: slideIn 1s ease-in-out;
-      margin-bottom: 20px;
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 blue;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 5s infinite linear alternate-reverse;
     }
 
-    .intro {
-      font-style: italic;
-      line-height: 1.8;
-      color: #555;
-      animation: fadeIn 1.5s ease-in;
+    @keyframes glitch-anim {
+      0% { clip: rect(61px, 9999px, 52px, 0); }
+      10% { clip: rect(33px, 9999px, 33px, 0); }
+      20% { clip: rect(40px, 9999px, 20px, 0); }
+      30% { clip: rect(50px, 9999px, 70px, 0); }
     }
 
-    .section {
-      margin-top: 50px;
+    @keyframes glitch-anim2 {
+      0% { clip: rect(29px, 9999px, 61px, 0); }
+      10% { clip: rect(70px, 9999px, 30px, 0); }
+      20% { clip: rect(35px, 9999px, 50px, 0); }
+      30% { clip: rect(45px, 9999px, 60px, 0); }
     }
 
-    .section-title {
-      font-size: 1.8rem;
-      color: #3a2e7b;
-      margin-bottom: 25px;
-      border-left: 6px solid #6b5bff;
-      padding-left: 12px;
-      font-weight: 700;
-    }
-
-    .formula, .formula-card {
-      background-color: #f8f9ff;
-      padding: 20px 25px;
-      margin-bottom: 20px;
-      border-left: 5px solid #3a2e7b;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
-      animation: fadeInUp 0.6s ease-in-out;
-    }
-
-    .formula:hover, .formula-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .formula p, .formula-card p {
-      color: #555;
-      line-height: 1.5;
-      margin: 6px 0;
-    }
-
-    .formula p code, .formula-card code {
-      font-weight: bold;
-      background-color: #e0e0f5;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-family: monospace;
-      color: #2d2d7b;
-    }
-
-    .formula h3, .formula-card h3 {
-      margin-bottom: 10px;
-      color: #333;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsividade */
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
+    @keyframes glitch-skew {
+      0% { transform: skew(-2deg, -2deg); }
+      10% { transform: skew(-2deg, 2deg); }
+      20% { transform: skew(2deg, -2deg); }
+      30% { transform: skew(2deg, 2deg); }
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <h1>A Fórmula da Criação</h1>
-      <p class="intro">
-        Assim como a matemática revela verdades por meio de fórmulas exatas, também a vida em Deus se constrói sobre fundamentos que não mudam.<br /><br />
-        Não há meio termo na verdade eterna — o que é, sempre foi e sempre será.<br /><br />
-        Como dizia <strong>Santo Agostinho</strong>: “A verdade habita no coração que ama”, e nessa busca, razão e fé não se opõem: se abraçam.<br /><br />
+  <div class="min-h-screen flex flex-col items-center justify-start px-4 py-10">
+    <header class="text-center mb-10">
+      <h1 class="text-4xl md:text-5xl font-bold glitch" data-text="A Fórmula da Criação">A Fórmula da Criação</h1>
+      <p class="mt-6 text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+        Assim como a matemática revela verdades por meio de fórmulas exatas, também a vida em Deus se constrói sobre fundamentos que não mudam.<br><br>
+        Não há meio termo na verdade eterna — o que é, sempre foi e sempre será.<br><br>
+        Como dizia <strong>Santo Agostinho</strong>: “A verdade habita no coração que ama”, e nessa busca, razão e fé não se opõem: se abraçam.<br><br>
         Na criação, há ordem. Na ordem, há beleza. E na beleza, a assinatura do Criador.
       </p>
     </header>
 
-    <div class="section">
-      <div class="formula">
-        <p><code>Criação = Verdade + Beleza + Ordem + Amor</code></p>
-        <p>Uma equação que não falha. Onde há amor verdadeiro, há estrutura. Onde há estrutura, há propósito. E onde há propósito... há Deus.</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2 class="section-title">🧮 Matemática Básica</h2>
-
-      <div class="formula-card">
-        <h3>Soma</h3>
-        <p><strong>Fórmula:</strong> <code>a + b</code></p>
-        <p><strong>Exemplo:</strong> 3 + 5 = 8</p>
+    <div class="w-full max-w-4xl space-y-10">
+      <div class="bg-white text-gray-900 p-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
+        <p class="text-center text-xl font-semibold">
+          <code class="bg-purple-100 px-2 py-1 rounded">Criação = Verdade + Beleza + Ordem + Amor</code>
+        </p>
+        <p class="mt-4 text-center">Onde há amor verdadeiro, há estrutura. Onde há estrutura, há propósito. E onde há propósito... há Deus.</p>
       </div>
 
-      <div class="formula-card">
-        <h3>Porcentagem</h3>
-        <p><strong>Fórmula:</strong> <code>(parte ÷ total) × 100</code></p>
-        <p><strong>Exemplo:</strong> (20 ÷ 200) × 100 = 10%</p>
-      </div>
-    </div>
+      <section>
+        <h2 class="text-2xl font-bold text-cyan-400 mb-4">🧮 Matemática Básica</h2>
 
-    <div class="section">
-      <h2 class="section-title">📏 Geometria</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+            <h3 class="text-xl font-semibold text-cyan-300">Soma</h3>
+            <p><strong>Fórmula:</strong> <code>a + b</code></p>
+            <p><strong>Exemplo:</strong> 3 + 5 = 8</p>
+          </div>
 
-      <div class="formula-card">
-        <h3>Área do Quadrado</h3>
-        <p><strong>Fórmula:</strong> <code>A = lado × lado</code></p>
-        <p><strong>Exemplo:</strong> lado = 4 → A = 4 × 4 = 16</p>
-      </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+            <h3 class="text-xl font-semibold text-cyan-300">Porcentagem</h3>
+            <p><strong>Fórmula:</strong> <code>(parte ÷ total) × 100</code></p>
+            <p><strong>Exemplo:</strong> (20 ÷ 200) × 100 = 10%</p>
+          </div>
+        </div>
+      </section>
 
-      <div class="formula-card">
-        <h3>Área do Círculo</h3>
-        <p><strong>Fórmula:</strong> <code>A = π × r²</code></p>
-        <p><strong>Exemplo:</strong> r = 3 → A ≈ 3.14 × 9 = 28.26</p>
-      </div>
-    </div>
+      <section>
+        <h2 class="text-2xl font-bold text-cyan-400 mb-4">📏 Geometria</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gray-800 p-6 rounded-lg">
+            <h3 class="text-xl text-cyan-300">Área do Quadrado</h3>
+            <p><strong>Fórmula:</strong> <code>A = lado × lado</code></p>
+            <p><strong>Exemplo:</strong> lado = 4 → A = 16</p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg">
+            <h3 class="text-xl text-cyan-300">Área do Círculo</h3>
+            <p><strong>Fórmula:</strong> <code>A = π × r²</code></p>
+            <p><strong>Exemplo:</strong> r = 3 → A ≈ 28.26</p>
+          </div>
+        </div>
+      </section>
 
-    <div class="section">
-      <h2 class="section-title">📊 Álgebra</h2>
-
-      <div class="formula-card">
-        <h3>Equação do 1º Grau</h3>
-        <p><strong>Fórmula:</strong> <code>ax + b = 0</code></p>
-        <p><strong>Exemplo:</strong> 2x + 4 = 0 → x = -2</p>
-      </div>
-
-      <div class="formula-card">
-        <h3>Fórmula de Bhaskara</h3>
-        <p><strong>Fórmula:</strong> <code>x = (-b ± √(b² - 4ac)) / 2a</code></p>
-        <p><strong>Exemplo:</strong> x² - 3x + 2 = 0 → x = 1 ou x = 2</p>
-      </div>
+      <section>
+        <h2 class="text-2xl font-bold text-cyan-400 mb-4">📊 Álgebra</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gray-800 p-6 rounded-lg">
+            <h3 class="text-xl text-cyan-300">Equação do 1º Grau</h3>
+            <p><strong>Fórmula:</strong> <code>ax + b = 0</code></p>
+            <p><strong>Exemplo:</strong> 2x + 4 = 0 → x = -2</p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg">
+            <h3 class="text-xl text-cyan-300">Fórmula de Bhaskara</h3>
+            <p><strong>Fórmula:</strong> <code>x = (-b ± √(b² - 4ac)) ÷ 2a</code></p>
+            <p><strong>Exemplo:</strong> x² - 3x + 2 = 0 → x = 1 ou x = 2</p>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </body>
 </html>
+
