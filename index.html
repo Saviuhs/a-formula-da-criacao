@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>A Fórmula da Criação</title>
 
-  <!-- Google Fonts -->
+  <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- FontAwesome para ícones -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- Typed.js -->
@@ -23,9 +23,8 @@
       color: #ffffff;
       font-family: 'Roboto Mono', monospace;
       overflow-x: hidden;
-      position: relative;
       min-height: 100vh;
-      padding-bottom: 120px; /* espaço para o footer */
+      padding-bottom: 100px;
     }
 
     .glitch {
@@ -33,6 +32,7 @@
       color: #6bffcc;
       animation: glitch-skew 1s infinite linear alternate-reverse;
     }
+
     .glitch::before,
     .glitch::after {
       content: attr(data-text);
@@ -42,30 +42,35 @@
       width: 100%;
       height: 100%;
     }
+
     .glitch::before {
       left: 2px;
       text-shadow: -2px 0 red;
       clip: rect(44px, 450px, 56px, 0);
       animation: glitch-anim 5s infinite linear alternate-reverse;
     }
+
     .glitch::after {
       left: -2px;
       text-shadow: -2px 0 blue;
       clip: rect(44px, 450px, 56px, 0);
       animation: glitch-anim2 5s infinite linear alternate-reverse;
     }
+
     @keyframes glitch-anim {
       0% { clip: rect(61px, 9999px, 52px, 0); }
       10% { clip: rect(33px, 9999px, 33px, 0); }
       20% { clip: rect(40px, 9999px, 20px, 0); }
       30% { clip: rect(50px, 9999px, 70px, 0); }
     }
+
     @keyframes glitch-anim2 {
       0% { clip: rect(29px, 9999px, 61px, 0); }
       10% { clip: rect(70px, 9999px, 30px, 0); }
       20% { clip: rect(35px, 9999px, 50px, 0); }
       30% { clip: rect(45px, 9999px, 60px, 0); }
     }
+
     @keyframes glitch-skew {
       0% { transform: skew(-2deg, -2deg); }
       10% { transform: skew(-2deg, 2deg); }
@@ -73,7 +78,6 @@
       30% { transform: skew(2deg, 2deg); }
     }
 
-    /* Floating icons container */
     .floating-icons {
       position: fixed;
       top: 0; left: 0;
@@ -87,7 +91,7 @@
     .floating-icons .icon {
       position: absolute;
       font-size: 16px;
-      color: rgba(107, 255, 204, 0.3);
+      color: rgba(107, 255, 204, 0.2);
       animation: floatUp 10s linear infinite;
       user-select: none;
     }
@@ -101,21 +105,70 @@
 </head>
 <body>
 
+  <!-- Ícones flutuantes -->
   <div class="floating-icons"></div>
 
-  <div class="min-h-screen flex flex-col items-center justify-start px-4 py-10 relative z-10 max-w-5xl mx-auto">
+  <!-- Conteúdo principal -->
+  <main class="max-w-4xl mx-auto px-6 py-20 relative z-10">
 
-    <header class="text-center mb-10">
-      <h1 class="text-4xl md:text-5xl font-bold glitch" data-text="A Fórmula da Criação">A Fórmula da Criação</h1>
-      <p id="typing-hello" class="mt-6 text-cyan-400 text-2xl font-semibold min-h-[3rem]"></p>
-      <p class="mt-6 text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
-        Assim como a matemática revela verdades por meio de fórmulas exatas, também a vida em Deus se constrói sobre fundamentos que não mudam.<br /><br />
-        Não há meio termo na verdade eterna — o que é, sempre foi e sempre será.<br /><br />
-        Como dizia <strong>Santo Agostinho</strong>: “A verdade habita no coração que ama”, e nessa busca, razão e fé não se opõem: se abraçam.<br /><br />
-        Na criação, há ordem. Na ordem, há beleza. E na beleza, a assinatura do Criador.
-      </p>
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-6xl font-extrabold glitch" data-text="A Fórmula da Criação">
+        A Fórmula da Criação
+      </h1>
+      <p id="typing-hello" class="mt-4 text-cyan-300 text-xl font-medium min-h-[2.5rem]"></p>
     </header>
 
+    <section class="bg-white/5 p-6 md:p-10 rounded-2xl shadow-lg text-gray-100 leading-relaxed text-base md:text-lg space-y-6">
+      <p>
+        Assim como a <strong>matemática</strong> revela verdades por meio de fórmulas exatas, também a vida em Deus se constrói sobre fundamentos que não mudam.
+      </p>
+      <p>
+        Não há meio termo na verdade eterna — o que é, sempre foi e sempre será.
+      </p>
+      <p>
+        Como dizia <strong>Santo Agostinho</strong>: “A verdade habita no coração que ama”, e nessa busca, <em>razão e fé</em> não se opõem: se abraçam.
+      </p>
+      <p>
+        Na criação, há <strong>ordem</strong>. Na ordem, há <strong>beleza</strong>. E na beleza, a assinatura do Criador.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="text-center text-gray-400 text-sm py-6 absolute bottom-0 w-full z-10">
+    © 2025 A Fórmula da Criação. Todos os direitos reservados.
+  </footer>
+
+  <!-- Script Typed.js -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      new Typed("#typing-hello", {
+        strings: ["Inspirado por fé.", "Guiado pela razão.", "Movido pela verdade."],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        loop: true
+      });
+
+      const icons = ['<i class="fas fa-star"></i>', '<i class="fas fa-atom"></i>', '<i class="fas fa-infinity"></i>', '<i class="fas fa-cross"></i>', '<i class="fas fa-brain"></i>'];
+      const container = document.querySelector('.floating-icons');
+
+      for (let i = 0; i < 40; i++) {
+        const icon = document.createElement('div');
+        icon.className = 'icon';
+        icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        icon.style.left = Math.random() * 100 + 'vw';
+        icon.style.top = Math.random() * 100 + 'vh';
+        icon.style.fontSize = (Math.random() * 24 + 8) + 'px';
+        icon.style.animationDuration = (Math.random() * 10 + 5) + 's';
+        container.appendChild(icon);
+      }
+    });
+  </script>
+
+</body>
+</html>
     <!-- Matemática Básica -->
     <section>
       <h2 class="text-2xl font-bold text-cyan-400 mb-4">🧮 Matemática Básica</h2>
