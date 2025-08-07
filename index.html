@@ -132,6 +132,7 @@
   </style>
 </head>
 <body>
+
   <div class="floating-icons" aria-hidden="true"></div>
 
   <main class="min-h-screen flex flex-col items-center justify-start px-4 py-10 relative z-10 max-w-5xl mx-auto">
@@ -334,9 +335,9 @@
 
       for (let i = 0; i < 30; i++) {
         const icon = document.createElement('i');
-        icon.className = `icon fas ${icons[Math.floor(Math.random() * icons.length)]}`;
-        icon.style.left = `${Math.random() * 100}vw`;
-        icon.style.top = `${Math.random() * 100}vh`;
+        icon.className = icon fas ${icons[Math.floor(Math.random() * icons.length)]};
+        icon.style.left = ${Math.random() * 100}vw;
+        icon.style.top = ${Math.random() * 100}vh;
         icon.style.animationDuration = (5 + Math.random() * 10) + 's';
         icon.style.fontSize = (12 + Math.random() * 12) + 'px';
         container.appendChild(icon);
