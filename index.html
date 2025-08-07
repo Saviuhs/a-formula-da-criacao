@@ -6,11 +6,16 @@
   <title>A Fórmula da Criação</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+  <!-- FontAwesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
   <style>
     body {
@@ -18,6 +23,9 @@
       color: #ffffff;
       font-family: 'Roboto Mono', monospace;
       overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 120px; /* espaço para o footer */
     }
 
     .glitch {
@@ -25,7 +33,6 @@
       color: #6bffcc;
       animation: glitch-skew 1s infinite linear alternate-reverse;
     }
-
     .glitch::before,
     .glitch::after {
       content: attr(data-text);
@@ -35,286 +42,255 @@
       width: 100%;
       height: 100%;
     }
-
     .glitch::before {
       left: 2px;
       text-shadow: -2px 0 red;
       clip: rect(44px, 450px, 56px, 0);
       animation: glitch-anim 5s infinite linear alternate-reverse;
     }
-
     .glitch::after {
       left: -2px;
       text-shadow: -2px 0 blue;
       clip: rect(44px, 450px, 56px, 0);
       animation: glitch-anim2 5s infinite linear alternate-reverse;
     }
-
     @keyframes glitch-anim {
       0% { clip: rect(61px, 9999px, 52px, 0); }
       10% { clip: rect(33px, 9999px, 33px, 0); }
       20% { clip: rect(40px, 9999px, 20px, 0); }
       30% { clip: rect(50px, 9999px, 70px, 0); }
     }
-
     @keyframes glitch-anim2 {
       0% { clip: rect(29px, 9999px, 61px, 0); }
       10% { clip: rect(70px, 9999px, 30px, 0); }
       20% { clip: rect(35px, 9999px, 50px, 0); }
       30% { clip: rect(45px, 9999px, 60px, 0); }
     }
-
     @keyframes glitch-skew {
       0% { transform: skew(-2deg, -2deg); }
       10% { transform: skew(-2deg, 2deg); }
       20% { transform: skew(2deg, -2deg); }
       30% { transform: skew(2deg, 2deg); }
     }
+
+    /* Floating icons container */
+    .floating-icons {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .floating-icons .icon {
+      position: absolute;
+      font-size: 16px;
+      color: rgba(107, 255, 204, 0.3);
+      animation: floatUp 10s linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-20vh) translateX(50px) rotate(360deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
-  <div class="min-h-screen flex flex-col items-center justify-start px-4 py-10">
+
+  <div class="floating-icons"></div>
+
+  <div class="min-h-screen flex flex-col items-center justify-start px-4 py-10 relative z-10 max-w-5xl mx-auto">
+
     <header class="text-center mb-10">
       <h1 class="text-4xl md:text-5xl font-bold glitch" data-text="A Fórmula da Criação">A Fórmula da Criação</h1>
+      <p id="typing-hello" class="mt-6 text-cyan-400 text-2xl font-semibold min-h-[3rem]"></p>
       <p class="mt-6 text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
-        Assim como a matemática revela verdades por meio de fórmulas exatas, também a vida em Deus se constrói sobre fundamentos que não mudam.<br><br>
-        Não há meio termo na verdade eterna — o que é, sempre foi e sempre será.<br><br>
-        Como dizia <strong>Santo Agostinho</strong>: “A verdade habita no coração que ama”, e nessa busca, razão e fé não se opõem: se abraçam.<br><br>
+        Assim como a matemática revela verdades por meio de fórmulas exatas, também a vida em Deus se constrói sobre fundamentos que não mudam.<br /><br />
+        Não há meio termo na verdade eterna — o que é, sempre foi e sempre será.<br /><br />
+        Como dizia <strong>Santo Agostinho</strong>: “A verdade habita no coração que ama”, e nessa busca, razão e fé não se opõem: se abraçam.<br /><br />
         Na criação, há ordem. Na ordem, há beleza. E na beleza, a assinatura do Criador.
       </p>
     </header>
 
-    <div class="w-full max-w-4xl space-y-10">
-      <div class="bg-white text-gray-900 p-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-        <p class="text-center text-xl font-semibold">
-          <code class="bg-purple-100 px-2 py-1 rounded">Criação = Logos + Verdade + Ordem + Amor
-(Jo 1,1: "No princípio era o Logos, e o Logos estava com Deus, e o Logos era Deus.")</code>
-        </p>
-        <p class="mt-4 text-center">“A matemática é o alfabeto com o qual Deus escreveu o universo.”<strong>Galileo Galilei</p>
+    <!-- Matemática Básica -->
+    <section>
+      <h2 class="text-2xl font-bold text-cyan-400 mb-4">🧮 Matemática Básica</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Soma -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Soma</h3>
+          <p><strong>Fórmula:</strong> <code>a + b</code></p>
+          <p><strong>Exemplo:</strong> 2568 + 7890 = 10.458</p>
+          <p><strong>Como resolver:</strong></p>
+          <ol class="list-decimal list-inside text-gray-300">
+            <li>Alinhe os números pela direita (unidades, dezenas, etc.).</li>
+            <li>Some coluna por coluna, começando da direita para a esquerda.</li>
+            <li>Se a soma passar de 9, leve 1 para a próxima coluna.</li>
+            <li>Continue até terminar todas as colunas.</li>
+          </ol>
+        </div>
+        <!-- Subtração -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Subtração</h3>
+          <p><strong>Fórmula:</strong> <code>a - b</code></p>
+          <p><strong>Exemplo 1:</strong> 1000 - 450 = 550</p>
+          <p><strong>Exemplo 2:</strong> 500 - 1000 = -500</p>
+          <p><strong>Como resolver:</strong></p>
+          <ol class="list-decimal list-inside text-gray-300">
+            <li>Alinhe os números pelas casas decimais.</li>
+            <li>Subtraia da direita para a esquerda.</li>
+            <li>Se o número de cima for menor, peça "emprestado" da casa seguinte.</li>
+            <li>Se o resultado for negativo, o sinal será "-".</li>
+          </ol>
+        </div>
+        <!-- Multiplicação -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Multiplicação</h3>
+          <p><strong>Fórmula:</strong> <code>a × b</code></p>
+          <p><strong>Exemplo 1:</strong> 12 × 8 = 96</p>
+          <p><strong>Exemplo 2:</strong> 3,5 × 2 = 7</p>
+          <p><strong>Como resolver:</strong></p>
+          <ol class="list-decimal list-inside text-gray-300">
+            <li>Multiplique cada algarismo de baixo pelos de cima (linha por linha).</li>
+            <li>Some os resultados parciais (como se fosse uma soma).</li>
+            <li>Se houver vírgula, conte quantas casas decimais existem no total.</li>
+            <li>Coloque a vírgula no resultado com o mesmo número de casas.</li>
+          </ol>
+        </div>
+        <!-- Divisão -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Divisão</h3>
+          <p><strong>Fórmula:</strong> <code>a ÷ b</code></p>
+          <p><strong>Exemplo 1:</strong> 100 ÷ 4 = 25</p>
+          <p><strong>Exemplo 2:</strong> 7,5 ÷ 2,5 = 3</p>
+          <p><strong>Como resolver:</strong></p>
+          <ol class="list-decimal list-inside text-gray-300">
+            <li>Divida o número de cima (dividendo) pelo de baixo (divisor).</li>
+            <li>Veja quantas vezes o divisor “cabe” no dividendo.</li>
+            <li>Se houver vírgula, transforme em números inteiros (ex: 7,5 ÷ 2,5 → 75 ÷ 25).</li>
+            <li>Continue o processo até encontrar o quociente.</li>
+          </ol>
+        </div>
       </div>
+    </section>
 
-      <section>
-  <h2 class="text-2xl font-bold text-cyan-400 mb-4">🧮 Matemática Básica</h2>
+    <!-- Geometria -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-cyan-400 mb-4">📏 Geometria</h2>
+      <div class="space-y-6">
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Área do Triângulo</h3>
+          <p><strong>Fórmula:</strong> <code>A = (b × h) / 2</code></p>
+          <p><strong>Onde:</strong> b = base, h = altura</p>
+          <p><strong>Exemplo:</strong> Base = 6cm, Altura = 4cm → A = (6 × 4) / 2 = 12 cm²</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Área do Retângulo</h3>
+          <p><strong>Fórmula:</strong> <code>A = b × h</code></p>
+          <p><strong>Onde:</strong> b = base, h = altura</p>
+          <p><strong>Exemplo:</strong> Base = 8cm, Altura = 3cm → A = 8 × 3 = 24 cm²</p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Área do Círculo</h3>
+          <p><strong>Fórmula:</strong> <code>A = π × r²</code></p>
+          <p><strong>Onde:</strong> r = raio</p>
+          <p><strong>Exemplo:</strong> Raio = 5cm → A ≈ 3,14 × 25 = 78,5 cm²</p>
+        </div>
+      </div>
+    </section>
 
-  <div class="grid md:grid-cols-2 gap-6">
-    <!-- Soma -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl font-semibold text-cyan-300">Soma</h3>
-      <p><strong>Fórmula:</strong> <code>a + b</code></p>
-      <p><strong>Exemplo:</strong> 2568 + 7890 = 10.458</p>
-      <p><strong>Como resolver:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Alinhe os números pela direita (unidades, dezenas, etc.).</li>
-        <li>Some coluna por coluna, começando da direita para a esquerda.</li>
-        <li>Se a soma passar de 9, leve 1 para a próxima coluna.</li>
-        <li>Continue até terminar todas as colunas.</li>
-      </ol>
-    </div>
-
-    <!-- Subtração -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl font-semibold text-cyan-300">Subtração</h3>
-      <p><strong>Fórmula:</strong> <code>a - b</code></p>
-      <p><strong>Exemplo 1:</strong> 1000 - 450 = 550</p>
-      <p><strong>Exemplo 2:</strong> 500 - 1000 = -500</p>
-      <p><strong>Como resolver:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Alinhe os números pelas casas decimais.</li>
-        <li>Subtraia da direita para a esquerda.</li>
-        <li>Se o número de cima for menor, peça "emprestado" da casa seguinte.</li>
-        <li>Se o resultado for negativo, o sinal será "-".</li>
-      </ol>
-    </div>
-
-    <!-- Multiplicação -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl font-semibold text-cyan-300">Multiplicação</h3>
-      <p><strong>Fórmula:</strong> <code>a × b</code></p>
-      <p><strong>Exemplo 1:</strong> 12 × 8 = 96</p>
-      <p><strong>Exemplo 2:</strong> 3,5 × 2 = 7</p>
-      <p><strong>Como resolver:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Multiplique cada algarismo de baixo pelos de cima (linha por linha).</li>
-        <li>Some os resultados parciais (como se fosse uma soma).</li>
-        <li>Se houver vírgula, conte quantas casas decimais existem no total.</li>
-        <li>Coloque a vírgula no resultado com o mesmo número de casas.</li>
-      </ol>
-    </div>
-
-    <!-- Divisão -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl font-semibold text-cyan-300">Divisão</h3>
-      <p><strong>Fórmula:</strong> <code>a ÷ b</code></p>
-      <p><strong>Exemplo 1:</strong> 100 ÷ 4 = 25</p>
-      <p><strong>Exemplo 2:</strong> 7,5 ÷ 2,5 = 3</p>
-      <p><strong>Como resolver:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Divida o número de cima (dividendo) pelo de baixo (divisor).</li>
-        <li>Veja quantas vezes o divisor “cabe” no dividendo.</li>
-        <li>Se houver vírgula, transforme em números inteiros (ex: 7,5 ÷ 2,5 → 75 ÷ 25).</li>
-        <li>Divida normalmente e coloque a vírgula no lugar correto se necessário.</li>
-      </ol>
-    </div>
-
-    <!-- Porcentagem -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl font-semibold text-cyan-300">Porcentagem</h3>
-      <p><strong>Fórmula:</strong> <code>(parte ÷ total) × 100</code></p>
-      <p><strong>Exemplo:</strong> (20 ÷ 200) × 100 = 10%</p>
-      <p><strong>Como resolver:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Divida a parte pelo total.</li>
-        <li>Multiplique o resultado por 100.</li>
-        <li>O número final será a porcentagem.</li>
-      </ol>
-    </div>
+    <!-- Álgebra -->
+    <section class="mt-16 mb-20">
+      <h2 class="text-2xl font-bold text-cyan-400 mb-4">📊 Álgebra</h2>
+      <div class="space-y-6">
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Fórmula de Bhaskara</h3>
+          <p><strong>Equação:</strong> <code>ax² + bx + c = 0</code></p>
+          <p><strong>Fórmula:</strong></p>
+          <p class="text-xl font-mono text-green-400">x = [-b ± √(b² - 4ac)] / 2a</p>
+          <p><strong>Exemplo:</strong> Resolva 2x² + 3x - 2 = 0</p>
+          <ol class="list-decimal list-inside text-gray-300">
+            <li>Calcule Δ = b² - 4ac = 3² - 4×2×(-2) = 9 + 16 = 25</li>
+            <li>Calcule as raízes: x = (-3 ± √25) / (2×2)</li>
+            <li>Raiz 1: x = (-3 + 5) / 4 = 2/4 = 0,5</li>
+            <li>Raiz 2: x = (-3 - 5) / 4 = -8/4 = -2</li>
+          </ol>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Fatoração</h3>
+          <p><strong>Exemplo:</strong> <code>x² - 9 = (x - 3)(x + 3)</code></p>
+          <p><strong>Como resolver:</strong></p>
+          <ol class="list-decimal list-inside text-gray-300">
+            <li>Identifique se é uma diferença de quadrados.</li>
+            <li>Use a fórmula: a² - b² = (a - b)(a + b).</li>
+            <li>Substitua os termos para fatorar.</li>
+          </ol>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
+          <h3 class="text-xl font-semibold text-cyan-300">Produtos Notáveis</h3>
+          <p><strong>Exemplo:</strong> <code>(a + b)² = a² + 2ab + b²</code></p>
+          <p><strong>Outros produtos notáveis:</strong></p>
+          <ul class="list-disc list-inside text-gray-300">
+            <li><code>(a - b)² = a² - 2ab + b²</code></li>
+            <li><code>(a + b)(a - b) = a² - b²</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
 
-      <section>
-  <h2 class="text-2xl font-bold text-cyan-400 mb-4">📏 Geometria</h2>
-  <div class="grid md:grid-cols-2 gap-6">
-
-    <!-- Área do Quadrado -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Área do Quadrado</h3>
-      <p><strong>Fórmula:</strong> <code>A = lado × lado</code></p>
-      <p><strong>Exemplo:</strong> lado = 4 → A = 4 × 4 = 16</p>
-      <p><strong>Como calcular:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Identifique o valor do lado.</li>
-        <li>Multiplique o lado por ele mesmo.</li>
-        <li>O resultado será a área em unidades quadradas.</li>
-      </ol>
+  <footer class="bg-gray-900 text-gray-400 py-6 fixed bottom-0 left-0 w-full z-20">
+    <div class="container mx-auto text-center">
+      <p class="text-sm">© 2025 Sávio Henrique | Portfólio do Professor</p>
+      <div class="flex justify-center space-x-4 mt-4">
+        <a href="https://www.linkedin.com/in/ana-carolina-dias-4752202b9" target="_blank" class="text-blue-400 hover:text-blue-500" aria-label="LinkedIn">
+          <i class="fab fa-linkedin fa-lg"></i>
+        </a>
+        <a href="mailto:caroldias0204@gmail.com" class="text-blue-400 hover:text-blue-500" aria-label="Email">
+          <i class="fas fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://github.com/carol0204" target="_blank" class="text-blue-400 hover:text-blue-500" aria-label="GitHub">
+          <i class="fab fa-github fa-lg"></i>
+        </a>
+      </div>
+      <p class="mt-4 text-xs">Feito com 💻, ☕ e muita oração.</p>
     </div>
+  </footer>
 
-    <!-- Área do Círculo -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Área do Círculo</h3>
-      <p><strong>Fórmula:</strong> <code>A = π × r²</code></p>
-      <p><strong>Exemplo:</strong> r = 3 → A ≈ 3.14 × 9 = 28.26</p>
-      <p><strong>Como calcular:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Identifique o raio (r).</li>
-        <li>Eleve o raio ao quadrado (r × r).</li>
-        <li>Multiplique o resultado por π (≈ 3,14).</li>
-      </ol>
-    </div>
+  <script>
+    // Typed.js
+    new Typed('#typing-hello', {
+      strings: [
+        'Fala Alunos',
+        'Bem-vindo ao universo dos Matemáticos!',
+        'Conhecer a matemática chegará até Deus.',
+        'Cada dedicação uma evolução!'
+      ],
+      typeSpeed: 50,
+      backSpeed: 30,
+      startDelay: 500,
+      backDelay: 2000,
+      loop: true
+    });
 
-    <!-- Área do Retângulo -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Área do Retângulo</h3>
-      <p><strong>Fórmula:</strong> <code>A = base × altura</code></p>
-      <p><strong>Exemplo:</strong> base = 5, altura = 3 → A = 5 × 3 = 15</p>
-      <p><strong>Como calcular:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Meça a base e a altura.</li>
-        <li>Multiplique os dois valores.</li>
-        <li>O resultado será a área.</li>
-      </ol>
-    </div>
+    // Floating Icons
+    const icons = ['fa-code', 'fa-laptop-code', 'fa-database', 'fa-robot', 'fa-terminal'];
+    const container = document.querySelector('.floating-icons');
 
-    <!-- Área do Triângulo -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Área do Triângulo</h3>
-      <p><strong>Fórmula:</strong> <code>A = (base × altura) ÷ 2</code></p>
-      <p><strong>Exemplo:</strong> base = 6, altura = 4 → A = (6 × 4) ÷ 2 = 12</p>
-      <p><strong>Como calcular:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Multiplique a base pela altura.</li>
-        <li>Divida o resultado por 2.</li>
-        <li>O valor final é a área.</li>
-      </ol>
-    </div>
+    for (let i = 0; i < 30; i++) {
+      const icon = document.createElement('i');
+      icon.className = `icon fas ${icons[Math.floor(Math.random() * icons.length)]}`;
+      icon.style.left = `${Math.random() * 100}vw`;
+      icon.style.top = `${Math.random() * 100}vh`;
+      icon.style.animationDuration = (5 + Math.random() * 10) + 's'; // velocidade aleatória
+      container.appendChild(icon);
+    }
+  </script>
 
-    <!-- Volume do Cubo -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Volume do Cubo</h3>
-      <p><strong>Fórmula:</strong> <code>V = lado³</code></p>
-      <p><strong>Exemplo:</strong> lado = 3 → V = 3 × 3 × 3 = 27</p>
-      <p><strong>Como calcular:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Multiplique o lado por ele mesmo, três vezes.</li>
-        <li>O resultado será o volume em unidades cúbicas.</li>
-      </ol>
-    </div>
-
-    <!-- Volume do Cilindro -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Volume do Cilindro</h3>
-      <p><strong>Fórmula:</strong> <code>V = π × r² × h</code></p>
-      <p><strong>Exemplo:</strong> r = 2, h = 5 → V ≈ 3.14 × 4 × 5 = 62.8</p>
-      <p><strong>Como calcular:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Eleve o raio ao quadrado (r × r).</li>
-        <li>Multiplique o resultado por π (≈ 3,14).</li>
-        <li>Multiplique pelo valor da altura.</li>
-        <li>O resultado será o volume.</li>
-      </ol>
-    </div>
-
-  </div>
-<section>
-  <h2 class="text-2xl font-bold text-cyan-400 mb-4">📊 Álgebra</h2>
-  <div class="grid md:grid-cols-2 gap-6">
-
-    <!-- O que é Álgebra -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">O que é Álgebra?</h3>
-      <p>Álgebra é o ramo da matemática que usa símbolos (letras) para representar números e expressar relações e operações.</p>
-      <p>Ela ajuda a resolver problemas gerais e formular regras.</p>
-    </div>
-
-    <!-- Equação do 1º Grau -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Equação do 1º Grau</h3>
-      <p><strong>Fórmula:</strong> <code>ax + b = 0</code></p>
-      <p><strong>Exemplo:</strong> 2x + 4 = 0 → x = -2</p>
-      <p><strong>Como resolver:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Isolar o termo com x: 2x = -4</li>
-        <li>Dividir ambos os lados pelo coeficiente de x: x = -4 ÷ 2</li>
-        <li>Resultado: x = -2</li>
-      </ol>
-    </div>
-
-    <!-- Equação do 2º Grau -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Equação do 2º Grau</h3>
-      <p><strong>Fórmula geral:</strong> <code>ax² + bx + c = 0</code></p>
-      <p><strong>Fórmula de Bhaskara:</strong> <code>x = (-b ± √(b² - 4ac)) ÷ 2a</code></p>
-      <p><strong>Exemplo:</strong> x² - 3x + 2 = 0 → x = 1 ou x = 2</p>
-      <p><strong>Como resolver com Bhaskara:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Calcular o discriminante: Δ = b² - 4ac</li>
-        <li>Se Δ < 0 → não existem raízes reais</li>
-        <li>Se Δ ≥ 0 → calcular as raízes:</li>
-        <ul class="list-disc list-inside text-gray-400">
-          <li>x₁ = (-b + √Δ) ÷ 2a</li>
-          <li>x₂ = (-b - √Δ) ÷ 2a</li>
-        </ul>
-        <li>Substituir os valores e calcular as raízes.</li>
-      </ol>
-    </div>
-
-    <!-- Álgebra básica: operações e expressões -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow card-hover">
-      <h3 class="text-xl text-cyan-300 font-semibold">Operações e Expressões Algébricas</h3>
-      <p>São combinações de números, letras e operações (soma, subtração, multiplicação e divisão).</p>
-      <p>Exemplo: 3x + 5, (2a - b) × 4, etc.</p>
-      <p><strong>Dica para simplificar:</strong></p>
-      <ol class="list-decimal list-inside text-gray-300">
-        <li>Realize as operações indicadas.</li>
-        <li>Junte os termos semelhantes.</li>
-        <li>Deixe a expressão mais simples possível.</li>
-      </ol>
-    </div>
-
-  </div>
-</section>
-
-    </div>
-  </div>
 </body>
 </html>
 
